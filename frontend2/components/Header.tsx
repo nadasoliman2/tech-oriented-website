@@ -16,7 +16,9 @@ export function Brand() {
   return (
     <span className="brand" aria-label="tech-oriented">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="brand__word" src="/logo-wordmark.png" alt="tech-oriented" />
+      <img className="brand__word logo-on-dark" src="/logo-wordmark.png" alt="tech-oriented" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="brand__word logo-on-light" src="/logo-wordmark-dark.png" alt="" aria-hidden="true" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className="brand__mark" src="/logo-mark.png" alt="" aria-hidden="true" />
     </span>
@@ -28,6 +30,7 @@ export default function Header() {
   const { menuOpen, setMenuOpen, theme, toggleTheme, lang, toggleLang } = useSite();
   const [condensed, setCondensed] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [onDark, setOnDark] = useState(false);
   const { nav } = getData(lang);
   const t = strings[lang];
 
@@ -37,6 +40,9 @@ export default function Header() {
       const y = window.scrollY;
       setCondensed(y > 60);
       setHidden(y > 400 && y > last);
+      // .hero is always dark regardless of theme, so the header must match while over it
+      const hero = document.querySelector(".hero");
+      setOnDark(!!hero && hero.getBoundingClientRect().bottom > 72);
       last = y;
     };
     // Lenis drives native scroll, so a window listener covers both
@@ -49,7 +55,12 @@ export default function Header() {
     document.documentElement.classList.toggle("menu-open", menuOpen);
   }, [menuOpen]);
 
-  const cls = ["header", condensed && "is-condensed is-solid", hidden && !menuOpen && "is-hidden"]
+  const cls = [
+    "header",
+    condensed && "is-condensed is-solid",
+    hidden && !menuOpen && "is-hidden",
+    onDark && "is-on-dark",
+  ]
     .filter(Boolean)
     .join(" ");
 

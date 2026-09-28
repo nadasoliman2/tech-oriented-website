@@ -59,8 +59,15 @@ export default function Footer({ lang }: { lang: Lang }) {
           <div className="footer__col">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="logo-invert"
+              className="logo-on-dark"
               src="/logo-full.png"
+              alt="tech-oriented — tech solutions for every day problems"
+              style={{ width: "min(32rem, 80%)", height: "auto" }}
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="logo-on-light"
+              src="/logo-full-dark.png"
               alt="tech-oriented — tech solutions for every day problems"
               style={{ width: "min(32rem, 80%)", height: "auto" }}
             />

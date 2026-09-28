@@ -72,11 +72,12 @@ export default function Animations() {
             type: type === "chars" ? "lines,chars" : type,
             mask: type === "chars" ? "lines" : type,
             linesClass: "line",
+            wordsClass: "word",
             autoSplit: true,
             onSplit(self) {
               const targets = type === "chars" ? self.chars : type === "words" ? self.words : self.lines;
               return gsap.from(targets, {
-                yPercent: 115,
+                yPercent: 140,
                 duration: type === "chars" ? 1.4 : 1.3,
                 stagger: type === "chars" ? 0.025 : type === "words" ? 0.03 : 0.09,
                 delay,
@@ -201,7 +202,6 @@ export default function Animations() {
           if (!next || reduced) return;
           gsap.to(card, {
             scale: 0.9,
-            filter: "brightness(0.45)",
             ease: "none",
             scrollTrigger: { trigger: next, start: "top bottom", end: "top top+=80", scrub: true },
           });
