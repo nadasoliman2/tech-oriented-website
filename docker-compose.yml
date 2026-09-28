@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tech_oriented_backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DB_URL=mongodb://mongo:27017/tech_oriented
+      - REDIS_URI=redis://redis:6379
+    depends_on:
+      - mongo
+      - redis
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: tech_oriented_frontend
+    ports:
+      - "3001:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3000
+      - API_BASE_URL=http://backend:3000
+    depends_on:
+      - backend
+    restart: always
+
+  mongo:
+    image: mongo:latest
+    container_name: tech_oriented_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+
+  redis:
+    image: redis:7-alpine
+    container_name: tech_oriented_redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+volumes:
+  mongo_data:
