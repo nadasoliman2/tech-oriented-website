@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Accordion from "@/components/Accordion";
 import Media from "@/components/Media";
 import Button from "@/components/Button";
 import PageHero from "@/components/PageHero";
@@ -31,7 +30,7 @@ export default async function AboutPage() {
 
   return (
     <>
-      <PageHero label={about.label} title={about.title} wide body={about.intro.join(" ")} />
+      <PageHero label={about.label} title={about.title} wide body={about.intro.join(" ")} ambient />
 
       <section className="site-max">
         <div data-reveal>
@@ -39,34 +38,23 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="section site-max">
-        <div className="grid-12">
-          <div className="span-left mb-4">
-            <p className="label label--dot" data-fade>
-              {about.who.title}
-            </p>
-          </div>
-          <div className="span-right-wide col gap-4">
-            <p className="statement" data-scrub-words>
-              {about.who.body[0]}
-            </p>
-            <p className="body-l muted" data-fade>
-              {about.who.body[1]}
-            </p>
-            <p className="body-l muted" data-fade>
-              {about.who.body[2]}
-            </p>
-          </div>
+      <section className="section site-max about-who">
+        <p className="statement max-120" data-scrub-words>
+          {about.who.body[0]}
+        </p>
+        <div className="tile-grid about-who__tiles" data-stagger>
+          {about.who.body.slice(1).map((p) => (
+            <div className="tile tile--text" key={p}>
+              <p className="tile__title">{p}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className="section section--light">
+      <section className="section section--light has-glow about-house">
         <div className="site-max grid-12">
           <div className="span-left mb-4">
-            <p className="label label--dot mb-3" data-fade>
-              {t.positioning}
-            </p>
-            <h2 className="c2" data-split="lines">
+            <h2 className="c2 accent" data-split="lines">
               {about.house.title}
             </h2>
           </div>
@@ -81,24 +69,17 @@ export default async function AboutPage() {
       </section>
 
       <section className="section site-max">
-        <div className="grid-12 mb-6">
-          <div className="span-left">
-            <p className="label label--dot" data-fade>
-              {t.different}
-            </p>
-          </div>
-          <div className="span-right-wide">
-            <h2 className="h3" data-split="lines">
-              {t.differentTitle}
-            </h2>
-          </div>
+        <h2 className="h3 max-120 mb-4" data-split="lines">
+          {t.differentTitle}
+        </h2>
+        <div className="tile-grid about-diff" data-stagger>
+          {about.different.map((d) => (
+            <div className="tile tile--text" key={d.title}>
+              <h3 className="tile__title">{d.title}</h3>
+              <p className="tile__body">{d.body}</p>
+            </div>
+          ))}
         </div>
-        <Accordion
-          items={about.different.map((d) => ({
-            title: d.title,
-            content: <p className="lead muted">{d.body}</p>,
-          }))}
-        />
       </section>
 
       <section className="section site-max" style={{ paddingTop: 0 }}>
@@ -107,9 +88,6 @@ export default async function AboutPage() {
             <Media media={regionalMedia} className="media--square" />
           </div>
           <div className="feature__text">
-            <p className="label label--dot" data-fade>
-              {about.regional.title}
-            </p>
             <h2 className="h4" data-split="lines">
               {about.regional.body[0]}
             </h2>

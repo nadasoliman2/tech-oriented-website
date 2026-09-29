@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Button from "@/components/Button";
-import HoverRows from "@/components/HoverRows";
+import Media from "@/components/Media";
 import PageHero from "@/components/PageHero";
 import { getLang } from "@/lib/i18n";
 import { getData } from "@/lib/i18n-data";
@@ -20,23 +20,27 @@ export default async function IndustriesPage() {
 
   return (
     <>
-      <PageHero label={industries.label} title={industries.title} wide body={industries.body} />
+      <PageHero label={industries.label} title={industries.title} wide body={industries.body} ambient />
 
       <section className="site-max section" style={{ paddingTop: 0 }}>
-        <HoverRows
-          rows={industries.items.map((ind) => ({
-            title: ind.name,
-            body: ind.body,
-            media: industryMedia[ind.key],
-            tone: "var(--accent)",
-          }))}
-        />
-        <div className="flex between items-end wrap gap-3 mt-6">
-          <h2 className="h3 max-120" data-split="lines">
-            {t.discuss}
-          </h2>
-          <Button href="/contact">{t.cta}</Button>
+        <div className="products-grid">
+          {industries.items.map((ind) => (
+            <div className="pcard" key={ind.key} data-fade>
+              <div className="relative">
+                <Media media={industryMedia[ind.key]} className="media--ratio" parallax={0} play={false} />
+              </div>
+              <div className="pcard__meta">
+                <h2 className="c3">{ind.name}</h2>
+              </div>
+              <p className="muted" style={{ fontSize: "1.6rem" }}>{ind.body}</p>
+            </div>
+          ))}
         </div>
+
+        {/* <div className="ind-cta has-glow" data-fade>
+          <h2 className="h3">{t.discuss}</h2>
+          <Button href="/contact">{t.cta}</Button>
+        </div> */}
       </section>
     </>
   );

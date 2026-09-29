@@ -54,11 +54,11 @@ export default function HeroCanvas() {
           const py = y + (d ? (dy / d) * push : 0) - n * 8;
           const a = 0.06 + n * 0.32 + m * 0.6;
           const radius = 0.6 + n * 1.3 + m * 1.6;
-          // theme-coloured dots, shifting to brand teal (#2DD4BF) around the pointer
+          // theme-coloured dots, shifting to brand teal (#66C1C0) around the pointer
           const tint = Math.min(1, m * 1.4 + n * 0.15);
-          const cr = Math.round(base.r - (base.r - 45) * tint);
-          const cg = Math.round(base.g - (base.g - 212) * tint);
-          const cb = Math.round(base.b - (base.b - 191) * tint);
+          const cr = Math.round(base.r - (base.r - 102) * tint);
+          const cg = Math.round(base.g - (base.g - 193) * tint);
+          const cb = Math.round(base.b - (base.b - 192) * tint);
           ctx.fillStyle = `rgba(${cr},${cg},${cb},${a.toFixed(3)})`;
           ctx.beginPath();
           ctx.arc(px, py, radius, 0, Math.PI * 2);

@@ -21,14 +21,14 @@ export default async function ProductsPage() {
   return (
     <>
       <PageHero
-        label={t.products}
+       
         title={t.products}
         condensed
         lang={lang}
-        body={products.map((p) => p.name).join(" · ")}
+        ambient
       />
       <section className="site-max section" style={{ paddingTop: 0 }}>
-        <div className="products-grid" data-skew>
+        <div className="products-grid">
           {products.map((p, i) => (
             <TLink href={`/products/${p.slug}`} className="pcard" key={p.slug} data-cursor={t.view} data-fade>
               <div className="relative">
@@ -37,7 +37,6 @@ export default async function ProductsPage() {
               </div>
               <div className="pcard__meta">
                 <h2 className="c3">{p.name}</h2>
-                <span className="label">{String(i + 1).padStart(2, "0")}</span>
               </div>
               <span className="label">{p.category}</span>
               <p className="muted" style={{ fontSize: "1.6rem" }}>{p.headline}</p>

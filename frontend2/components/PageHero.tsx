@@ -1,25 +1,26 @@
 import type { ReactNode } from "react";
 import type { Lang } from "@/lib/i18n";
+import AmbientBg from "./AmbientBg";
 
 type Props = {
-  label: string;
+  label?: string;
   title: string;
   body?: ReactNode;
   meta?: ReactNode;
   wide?: boolean;
   condensed?: boolean;
   lang?: Lang;
+  /** animated brand backdrop behind the hero */
+  ambient?: boolean;
 };
 
 /** Inner-page hero: Fantasy-scale title, body offset to the right column. */
-export default function PageHero({ label, title, body, meta, wide, condensed, lang = "en" }: Props) {
+export default function PageHero({ title, body, meta, wide, condensed, lang = "en", ambient }: Props) {
   const chars = condensed && lang !== "ar";
   return (
-    <section className="page-hero site-max">
+    <section className={`page-hero site-max${ambient ? " page-hero--ambient" : ""}`}>
+      {ambient && <AmbientBg />}
       <div className="page-hero__label">
-        <span className="label label--dot" data-fade>
-          {label}
-        </span>
         {meta}
       </div>
       <h1
@@ -35,7 +36,6 @@ export default function PageHero({ label, title, body, meta, wide, condensed, la
           </div>
         </div>
       )}
-      <div className="rule mt-6" data-line />
     </section>
   );
 }

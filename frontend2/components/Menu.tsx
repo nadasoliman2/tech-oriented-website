@@ -7,16 +7,16 @@ import { useSite } from "./Providers";
 import TLink from "./TLink";
 
 const strings = {
-  en: { home: "Home", contact: "Contact", contactLabel: "Contact", officeLabel: "Office" },
-  ar: { home: "الرئيسية", contact: "تواصل", contactLabel: "تواصل", officeLabel: "المكتب" },
+  en: { home: "Home" },
+  ar: { home: "الرئيسية" },
 };
 
 /** Fantasy-style fullscreen menu: clip-path wipe, condensed links rise in. */
 export default function Menu() {
   const { menuOpen, setMenuOpen, lang } = useSite();
-  const { company, nav } = getData(lang);
+  const { nav } = getData(lang);
   const t = strings[lang];
-  const items = [{ label: t.home, href: "/" }, ...nav, { label: t.contact, href: "/contact" }];
+  const items = [{ label: t.home, href: "/" }, ...nav];
   const root = useRef<HTMLDivElement>(null);
   const first = useRef(true);
 
@@ -28,16 +28,14 @@ export default function Menu() {
       return;
     }
     const links = el.querySelectorAll(".menu__inner-anim");
-    const foot = el.querySelectorAll(".menu__foot > *");
-    gsap.killTweensOf([el, links, foot]);
+    gsap.killTweensOf([el, links]);
 
     if (menuOpen) {
       gsap
         .timeline()
         .set(el, { visibility: "visible" })
         .fromTo(el, { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1, ease: EASE_IN_OUT })
-        .fromTo(links, { yPercent: 110 }, { yPercent: 0, duration: 1.1, stagger: 0.045 }, 0.35)
-        .fromTo(foot, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, stagger: 0.06 }, 0.6);
+        .fromTo(links, { yPercent: 110 }, { yPercent: 0, duration: 1.1, stagger: 0.045 }, 0.35);
     } else {
       gsap
         .timeline()
@@ -57,33 +55,14 @@ export default function Menu() {
     <div className="menu" id="site-menu" ref={root} aria-hidden={!menuOpen}>
       <div className="site-max">
         <ul className="menu__list">
-          {items.map((item, i) => (
+          {items.map((item) => (
             <li className="menu__item" key={item.href}>
               <TLink href={item.href} className="menu__link" tabIndex={menuOpen ? 0 : -1}>
                 <span className="menu__inner-anim c1">{item.label}</span>
-                <span className="menu__inner-anim label">{String(i + 1).padStart(2, "0")}</span>
               </TLink>
             </li>
           ))}
         </ul>
-      </div>
-      <div className="site-max menu__foot">
-        <div className="col gap-1">
-          <span className="label">{t.contactLabel}</span>
-          <a href={`mailto:${company.email}`} className="u-link">{company.email}</a>
-          <a href={company.phoneHref} className="u-link">{company.phone}</a>
-        </div>
-        <div className="col gap-1">
-          <span className="label">{t.officeLabel}</span>
-          <span style={{ fontSize: "1.6rem" }}>{company.address}</span>
-        </div>
-        <div className="flex gap-2">
-          {company.socials.map((s) => (
-            <a key={s.href} href={s.href} target="_blank" rel="noreferrer" className="u-link">
-              {s.label}
-            </a>
-          ))}
-        </div>
       </div>
     </div>
   );

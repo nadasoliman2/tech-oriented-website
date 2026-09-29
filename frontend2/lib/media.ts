@@ -14,22 +14,40 @@ export const regionalMedia = v("13218", "Team silhouetted against a high-rise wi
 export const technologyMedia = v("23282", "Data center hallway");
 export const technologyStill = p("50748", "Screens with scrolling data");
 export const processMedia = v("46750", "Team reviewing work together");
+export const problemMedia = v("4835", "Team working across devices");
 
 export const serviceMedia: Record<string, MediaRef> = {
   "ai-solutions": v("31771", "Sphere of connected data points"),
-  "every-second-ai": v("51123", "Customer messaging on a phone"),
   "automation-solutions": v("4835", "Team working across devices"),
   "crm-business-systems": v("46680", "Team planning around a table"),
   "custom-software-development": v("46635", "Code reflected in glasses"),
   "web-mobile-applications": v("42136", "Browsing an online store on a phone"),
   "business-dashboards": v("42648", "Presenting charts on a screen"),
+  "strategic-marketing": p("4809", "Team meeting from above"),
+  "performance-marketing": p("50748", "Screens with scrolling data"),
+  branding: p("231", "Man in a tailored jacket on a rooftop at dusk"),
+  "visual-content": p("43270", "Using a phone app"),
+  "digital-marketing": p("4915", "Hands typing on a phone"),
+  "media-production": v("46750", "Team reviewing work together"),
+  "public-relations": v("13218", "Team silhouetted against a high-rise window"),
+  "events-management": v("918", "Busy open office"),
 };
 
 export const caseMedia: Record<string, MediaRef> = {
   "every-second-ai": v("41165", "Answering customer messages"),
-  "qatari-educational-platform": v("41180", "Learner looking at a tablet"),
+  "akoun": v("41180", "Learner looking at a tablet"),
   taxera: v("241", "Reviewing and signing documents"),
-  "qatari-automotive-parts-platform": v("30", "Car lights at night"),
+  "motori": v("30", "Car lights at night"),
+  baytlink: v("41541", "Residential towers from above"),
+};
+
+// tall = near-square marks that need more height to match the wide wordmarks
+export const caseLogos: Record<string, { src: string; tall?: boolean }> = {
+  "every-second-ai": { src: "/logos/every-second-ai.png" },
+  akoun: { src: "/logos/akoun.png" },
+  taxera: { src: "/logos/taxera.png" },
+  motori: { src: "/logos/motori.png", tall: true },
+  baytlink: { src: "/logos/baytlink.png" },
 };
 
 export const industryMedia: Record<string, MediaRef> = {

@@ -30,55 +30,69 @@ const strings = {
 
 export default async function ServicesPage() {
   const lang = await getLang();
-  const { about, industries, services, servicesIntro } = getData(lang);
+  const { about, industries, serviceGroups, services, servicesIntro } = getData(lang);
   const t = strings[lang];
+  const groups = serviceGroups.map((g) => ({
+    ...g,
+    items: g.slugs.map((slug) => services.find((s) => s.slug === slug)!),
+  }));
 
   return (
     <>
-      <PageHero label={servicesIntro.label} title={t.services} condensed lang={lang} body={servicesIntro.body} />
+      <PageHero  title={t.services} condensed lang={lang} ambient />
 
       <section className="site-max">
         <h2 className="h3 max-120 mb-6" data-split="lines">
           {servicesIntro.title}
         </h2>
-        {services.map((s, i) => (
-          <article className="svc" key={s.slug}>
-            <div className="svc__head">
-              <div className="svc__num">
-                <span className="label">{String(i + 1).padStart(2, "0")}</span>
-                <span className="label">{s.subtitle}</span>
-              </div>
-              <TLink href={`/services/${s.slug}`} data-cursor={t.open}>
-                <h3 className="c1 svc__title" data-split="lines">
-                  {s.name}
-                </h3>
-              </TLink>
-              <p className="body-l muted max-60" data-fade>
-                {s.summary}
+        {groups.map((g, gi) => (
+          <div className="svc-group" key={g.key}>
+            <header className="svc-group__head">
+              <h2 className="h2" data-split="lines">
+                {g.name}
+              </h2>
+              <p className="body-l muted" data-fade>
+                {g.tagline}
               </p>
-              <ul className="svc__caps" data-stagger>
-                {s.capabilities.map((c) => (
-                  <li key={c}>{c}</li>
-                ))}
-              </ul>
-              <div data-fade>
-                <Button href={`/services/${s.slug}`} variant="outline">
-                  {t.learnMore}
-                </Button>
-              </div>
-            </div>
-            <div className="svc__media" data-reveal>
-              <Media media={serviceMedia[s.slug]} />
-            </div>
-          </article>
+            </header>
+            {g.items.map((s, i) => (
+              <article className="svc" key={s.slug}>
+                <div className="svc__head">
+                  <div className="svc__num">
+                    <span className="label">{s.subtitle}</span>
+                  </div>
+                  <TLink href={`/services/${s.slug}`} data-cursor={t.open}>
+                    <h3 className="c1 svc__title" data-split="lines">
+                      {s.name}
+                    </h3>
+                  </TLink>
+                  <p className="body-l muted max-60" data-fade>
+                    {s.summary}
+                  </p>
+                  <ul className="svc__caps" data-stagger>
+                    {s.capabilities.map((c) => (
+                      <li key={c}>{c}</li>
+                    ))}
+                  </ul>
+                  <div data-fade>
+                    <Button href={`/contact`} variant="outline">
+                      {t.learnMore}
+                    </Button>
+                  </div>
+                </div>
+                <div className="svc__media" data-reveal>
+                  <Media media={serviceMedia[s.slug]} />
+                </div>
+              </article>
+            ))}
+          </div>
         ))}
       </section>
 
       {/* Industries — pinned horizontal slider (Fantasy "industries") */}
-      <section className="hslider section" data-hslider>
+      {/* <section className="hslider section" data-hslider>
         <div className="site-max hslider__head">
           <div>
-            <p className="label label--dot mb-3">{String(industries.items.length).padStart(2, "0")} {t.sectors}</p>
             <h2 className="c1" data-split={lang === "ar" ? "words" : "chars"}>
               {industries.label}
             </h2>
@@ -91,7 +105,6 @@ export default async function ServicesPage() {
               <Media media={industryMedia[ind.key]} parallax={0} />
               <div className="flex between gap-2">
                 <h3 className="c3">{ind.name}</h3>
-                <span className="label">{String(i + 1).padStart(2, "0")}</span>
               </div>
               <p className="muted" style={{ fontSize: "1.6rem" }}>{ind.body}</p>
             </div>
@@ -102,13 +115,10 @@ export default async function ServicesPage() {
             <i />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Statement (in place of Fantasy's client quote) */}
       <section className="section site-max">
-        <p className="label label--dot mb-4" data-fade>
-          {about.who.title}
-        </p>
         <blockquote className="h3 max-120" data-split="lines">
           &ldquo;{about.who.body[2]}&rdquo;
         </blockquote>

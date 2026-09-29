@@ -7,6 +7,7 @@ export type InitiativeScope =
   | "Custom CRM / ERP"
   | "Web & Mobile Apps"
   | "Executive Dashboards"
+  | "Marketing"
   | "Every Second AI"
   | "General Advisory"
   | "Product Partnership";

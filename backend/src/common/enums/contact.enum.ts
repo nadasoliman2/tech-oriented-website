@@ -15,6 +15,7 @@ export enum InitiativeScope {
   CUSTOM_CRM_ERP = 'Custom CRM / ERP',
   WEB_MOBILE_APPS = 'Web & Mobile Apps',
   EXECUTIVE_DASHBOARDS = 'Executive Dashboards',
+  MARKETING = 'Marketing',
   EVERY_SECOND_AI = 'Every Second AI',
   GENERAL_ADVISORY = 'General Advisory',
   PRODUCT_PARTNERSHIP = 'Product Partnership',

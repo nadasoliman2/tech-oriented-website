@@ -67,6 +67,7 @@ export default async function ProductPage({ params }: Params) {
           </>
         }
         meta={<span className="tag tag--solid">{p.status}</span>}
+        ambient
       />
 
       <section className="site-max">
@@ -78,7 +79,6 @@ export default async function ProductPage({ params }: Params) {
       <section className="section site-max">
         <div className="detail-grid">
           <div className="detail-grid__aside detail-grid__aside--sticky">
-            <p className="label label--dot mb-3">{t.keyFeatures}</p>
             <h2 className="c2" data-split="lines">
               {t.inside} {p.name}
             </h2>
@@ -87,7 +87,6 @@ export default async function ProductPage({ params }: Params) {
             <ul className="index-list">
               {p.features.map((f, i) => (
                 <li key={f} data-fade>
-                  <span className="label">{String(i + 1).padStart(2, "0")}</span>
                   <span className="h5">{f}</span>
                 </li>
               ))}
@@ -99,7 +98,6 @@ export default async function ProductPage({ params }: Params) {
       <section className="section section--light">
         <div className="site-max detail-grid">
           <div className="detail-grid__aside">
-            <p className="label label--dot mb-3">{t.bestFor}</p>
             <p className="label">{t.category}: {p.category}</p>
           </div>
           <div className="detail-grid__main">

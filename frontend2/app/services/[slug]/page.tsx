@@ -62,6 +62,7 @@ export default async function ServicePage({ params }: Params) {
         wide
         body={s.body}
         meta={<span className="label">{s.subtitle}</span>}
+        ambient
       />
 
       <section className="site-max">
@@ -73,7 +74,6 @@ export default async function ServicePage({ params }: Params) {
       <section className="section site-max">
         <div className="detail-grid">
           <div className="detail-grid__aside detail-grid__aside--sticky">
-            <p className="label label--dot mb-3">{t.capabilities}</p>
             <h2 className="c2" data-split="lines">
               {t.whatWeDeliver}
             </h2>
@@ -82,7 +82,6 @@ export default async function ServicePage({ params }: Params) {
             <ul className="index-list">
               {s.capabilities.map((c, i) => (
                 <li key={c} data-fade>
-                  <span className="label">{String(i + 1).padStart(2, "0")}</span>
                   <span className="h5">{c}</span>
                 </li>
               ))}
@@ -94,7 +93,6 @@ export default async function ServicePage({ params }: Params) {
       <section className="section section--light">
         <div className="site-max detail-grid">
           <div className="detail-grid__aside">
-            <p className="label label--dot mb-3">{t.bestFor}</p>
             <h2 className="c2" data-split="lines">
               {t.whoFor}
             </h2>
@@ -103,7 +101,6 @@ export default async function ServicePage({ params }: Params) {
             <ul className="index-list">
               {s.bestFor.map((b, i) => (
                 <li key={b} data-fade>
-                  <span className="label">{String(i + 1).padStart(2, "0")}</span>
                   <span className="h5">{b}</span>
                 </li>
               ))}

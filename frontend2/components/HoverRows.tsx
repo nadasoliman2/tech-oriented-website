@@ -42,7 +42,6 @@ export default function HoverRows({ rows }: { rows: Row[] }) {
       {rows.map((row, i) => (
         <div className="row" key={row.title} data-fade onMouseEnter={() => setActive(i)}>
           <span className="row__fill" style={{ background: row.tone }} />
-          <span className="label">{String(i + 1).padStart(2, "0")}</span>
           <h2 className="c2">{row.title}</h2>
           <p className="row__body muted body-l">{row.body}</p>
         </div>

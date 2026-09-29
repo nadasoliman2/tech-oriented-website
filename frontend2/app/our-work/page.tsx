@@ -34,7 +34,7 @@ export default async function CaseStudiesPage() {
 
   return (
     <>
-      <PageHero label={caseStudiesIntro.label} title={caseStudiesIntro.title} body={caseStudiesIntro.body} />
+      <PageHero label={caseStudiesIntro.label} title={caseStudiesIntro.title} body={caseStudiesIntro.body} ambient />
 
       <section className="site-max">
         {caseStudies.map((c, i) => (
@@ -42,17 +42,16 @@ export default async function CaseStudiesPage() {
             <div className="case__head">
               <div>
                 <div className="flex gap-2 mb-3">
-                  <span className="label">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="label label--dot">{c.sector}</span>
+                  <span className="label">{c.sector}</span>
                 </div>
                 <h2 className="h3" data-split="lines">
                   {c.name}
                 </h2>
               </div>
               <div className="acc__tags" data-stagger>
-                {c.stack.map((s) => (
+                {/* {c.stack.map((s) => (
                   <span className="tag" key={s}>{s}</span>
-                ))}
+                ))} */}
               </div>
             </div>
 

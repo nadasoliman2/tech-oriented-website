@@ -96,7 +96,9 @@ export default function Preloader() {
         <img className="loader__mark" src="/logo-mark.png" alt="" />
         <div className="loader__word">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-text.png" alt="" />
+          <img className="logo-on-dark" src="/logo-text.png" alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="logo-on-light" src="/logo-text-dark.png" alt="" />
         </div>
         <span className="loader__tag label">{t.tag}</span>
       </div>

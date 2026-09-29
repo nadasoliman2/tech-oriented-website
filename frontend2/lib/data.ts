@@ -19,26 +19,22 @@ export const company = {
 };
 
 export const nav = [
-  { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Products", href: "/products" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Technology", href: "/technology" },
-  { label: "How We Work", href: "/how-we-work" },
+  { label: "Our Work", href: "/our-work" },
+
   { label: "Industries", href: "/industries" },
+    { label: "About", href: "/about" },
+    {label:"Contact us", href: "/contact"}
+
 ];
 
 export const home = {
-  eyebrow: "AI & Digital Transformation",
+  // eyebrow: "AI & Digital Transformation",
   title: "AI & Digital Transformation Tech House",
   lead: "tech-oriented helps SMEs, startups, and growing businesses move from manual, fragmented operations to smarter, automated, and scalable digital systems.",
   body: "We combine AI agents, automation, CRM, custom software, web platforms, mobile applications, and dashboards to build practical technology solutions around the way your business actually works.",
-  stats: [
-    { value: "99.9", suffix: "%", label: "System Stability" },
-    { value: "10", suffix: "x", label: "Processing Speed" },
-    { value: "0", suffix: "", label: "Zero Latency" },
-    { value: "AI", suffix: "", label: "Native Intelligence" },
-  ],
+ 
   problem: {
     title: "Your business may not need more tools. It needs the right system.",
     body: "Many growing businesses struggle because customer messages, leads, follow-ups, operations, and reports are scattered across different channels and manual processes.",
@@ -130,36 +126,6 @@ export const services: Service[] = [
       "Companies looking to automate first-line customer interaction",
     ],
     cta: "Build Your AI Agent",
-  },
-  {
-    slug: "every-second-ai",
-    name: "Every Second AI",
-    short: "Every Second AI",
-    subtitle: "AI Marketing Tool That Converts Messages Into Leads",
-    summary:
-      "An AI marketing and customer communication tool that converts customer messages into qualified leads and useful business insights.",
-    headline: "AI that turns customer conversations into leads.",
-    body: "It helps businesses respond instantly, manage full conversations, qualify leads, book appointments, suggest products, and connect customer communication with CRM and dashboards.",
-    capabilities: [
-      "AI customer support conversations",
-      "AI sales conversations",
-      "Lead qualification",
-      "Appointment booking",
-      "Product recommendations",
-      "CRM integration",
-      "Dashboard and analytics",
-      "Human handoff",
-      "Multi-language and dialect support",
-      "VOC listening and insights",
-    ],
-    bestFor: [
-      "SMEs, startups, and e-commerce businesses",
-      "Clinics and real estate companies",
-      "Service businesses and education providers",
-      "Logistics companies",
-      "Any business that depends on direct customer conversations",
-    ],
-    cta: "Request a Demo",
   },
   {
     slug: "automation-solutions",
@@ -303,10 +269,259 @@ export const services: Service[] = [
     ],
     cta: "Create Your Dashboard",
   },
+  {
+    slug: "strategic-marketing",
+    name: "Strategic Marketing",
+    short: "Strategy",
+    subtitle: "Market, Positioning & Go-to-Market Planning",
+    summary:
+      "Market research, positioning, audience definition, go-to-market plans, and marketing roadmaps tied to business goals.",
+    headline: "A marketing plan built on the business, not on guesswork.",
+    body: "tech-oriented builds marketing strategies from the ground up: who the business sells to, what makes it different, which channels matter, and how every campaign ties back to revenue. The result is a clear roadmap the team can execute and measure.",
+    capabilities: [
+      "Market and competitor research",
+      "Brand positioning and messaging",
+      "Target audience and persona definition",
+      "Go-to-market planning",
+      "Marketing roadmaps and budgets",
+      "Channel strategy",
+      "KPI and measurement frameworks",
+      "Quarterly marketing plans",
+    ],
+    bestFor: [
+      "Startups preparing to launch",
+      "Businesses entering a new market",
+      "Companies with scattered marketing efforts",
+      "Teams needing a clear marketing direction",
+    ],
+    cta: "Plan Your Strategy",
+  },
+  {
+    slug: "performance-marketing",
+    name: "Performance Marketing",
+    short: "Performance",
+    subtitle: "Paid Ads, Conversion & Growth Campaigns",
+    summary:
+      "Paid campaigns across Meta, Google, TikTok, and Snapchat, optimized for leads, sales, and measurable return on ad spend.",
+    headline: "Ad spend measured against real results.",
+    body: "tech-oriented plans, launches, and optimizes paid campaigns focused on leads, sales, and return on ad spend. Every campaign is tracked end to end, connected to CRM where possible, and continuously improved based on data rather than impressions.",
+    capabilities: [
+      "Meta (Facebook & Instagram) ads",
+      "Google Search and Display ads",
+      "TikTok and Snapchat ads",
+      "Lead generation campaigns",
+      "Conversion tracking and pixel setup",
+      "A/B testing of creatives and audiences",
+      "Retargeting campaigns",
+      "ROAS and performance reporting",
+    ],
+    bestFor: [
+      "E-commerce businesses",
+      "Companies needing a steady flow of leads",
+      "Businesses launching new products",
+      "Teams wanting measurable ad results",
+    ],
+    cta: "Launch a Campaign",
+  },
+  {
+    slug: "branding",
+    name: "Branding",
+    short: "Branding",
+    subtitle: "Identity, Voice & Brand Systems",
+    summary:
+      "Brand strategy, naming, logo and visual identity, brand voice, and guidelines that keep every touchpoint consistent.",
+    headline: "A brand people recognize and remember.",
+    body: "tech-oriented builds brands that look consistent and say the same thing everywhere they appear. From naming and logo design to color, typography, tone of voice, and brand guidelines, we create identity systems that scale across digital products, marketing, and physical touchpoints.",
+    capabilities: [
+      "Brand strategy and positioning",
+      "Naming and taglines",
+      "Logo design",
+      "Visual identity systems",
+      "Color and typography",
+      "Brand voice and messaging",
+      "Brand guidelines",
+      "Rebranding",
+    ],
+    bestFor: [
+      "New businesses and startups",
+      "Companies going through a rebrand",
+      "Brands with inconsistent visuals",
+      "Businesses expanding to new markets",
+    ],
+    cta: "Build Your Brand",
+  },
+  {
+    slug: "visual-content",
+    name: "Visual Content",
+    short: "Visual Content",
+    subtitle: "Design for Social, Campaigns & Digital",
+    summary:
+      "Social media designs, campaign visuals, motion graphics, infographics, and creative assets produced in the brand's identity.",
+    headline: "Content designed to stop the scroll.",
+    body: "tech-oriented produces visual content that keeps a brand consistent and engaging across every channel. We design social posts, ad creatives, motion graphics, presentations, and campaign assets built around the brand identity and the message each audience needs to see.",
+    capabilities: [
+      "Social media post design",
+      "Ad creatives",
+      "Motion graphics and animations",
+      "Infographics",
+      "Campaign key visuals",
+      "Presentations and sales decks",
+      "Content calendars",
+      "Brand-consistent templates",
+    ],
+    bestFor: [
+      "Brands active on social media",
+      "Businesses running paid campaigns",
+      "Teams needing consistent monthly content",
+      "Companies without an in-house design team",
+    ],
+    cta: "Create Your Content",
+  },
+  {
+    slug: "digital-marketing",
+    name: "Digital Marketing",
+    short: "Digital Marketing",
+    subtitle: "Social Media, SEO, Email & Content",
+    summary:
+      "Social media management, SEO, content marketing, email marketing, and community management across the brand's digital channels.",
+    headline: "A consistent presence across every digital channel.",
+    body: "tech-oriented manages the digital channels where customers discover and follow a brand. We handle social media management, SEO, content marketing, email campaigns, and community management, all connected to clear goals and monthly reporting.",
+    capabilities: [
+      "Social media management",
+      "Community management",
+      "Search engine optimization (SEO)",
+      "Content marketing",
+      "Email marketing and newsletters",
+      "Influencer marketing",
+      "Website content and landing pages",
+      "Monthly analytics and reporting",
+    ],
+    bestFor: [
+      "Businesses building an online presence",
+      "Brands needing consistent social media",
+      "Companies wanting organic search traffic",
+      "Teams without a dedicated marketing department",
+    ],
+    cta: "Grow Online",
+  },
+  {
+    slug: "media-production",
+    name: "Media Production",
+    short: "Production",
+    subtitle: "Video, Photography & Content Production",
+    summary:
+      "Commercial video, product and corporate photography, reels, and short-form content from concept and script to final edit.",
+    headline: "Production from concept to final cut.",
+    body: "tech-oriented produces video and photography that tells a brand's story clearly. We handle concept, scriptwriting, shooting, editing, and delivery for commercials, product videos, corporate films, and short-form content made for social platforms.",
+    capabilities: [
+      "Commercial and promotional videos",
+      "Short-form reels and social videos",
+      "Product photography",
+      "Corporate photography and films",
+      "Scriptwriting and storyboarding",
+      "Video editing and color grading",
+      "Motion and 2D animation",
+      "Voice-over and sound",
+    ],
+    bestFor: [
+      "Brands launching products or campaigns",
+      "Businesses needing regular video content",
+      "Companies building a corporate image",
+      "E-commerce stores needing product visuals",
+    ],
+    cta: "Start a Production",
+  },
+  {
+    slug: "public-relations",
+    name: "Public Relations",
+    short: "PR",
+    subtitle: "Media Relations & Reputation Management",
+    summary:
+      "Media relations, press releases, reputation management, and communication plans that build trust with the public and the press.",
+    headline: "The right story, told to the right audience.",
+    body: "tech-oriented helps businesses shape how they are seen by the media, partners, and the public. We plan communication, write and distribute press releases, build media relationships, and manage reputation, including during sensitive moments.",
+    capabilities: [
+      "PR strategy and communication plans",
+      "Press releases and media kits",
+      "Media relations and coverage",
+      "Reputation management",
+      "Crisis communication",
+      "Thought leadership and interviews",
+      "Corporate announcements",
+      "Media monitoring and reporting",
+    ],
+    bestFor: [
+      "Companies announcing launches or funding",
+      "Brands building public credibility",
+      "Leaders building a personal profile",
+      "Businesses managing their reputation",
+    ],
+    cta: "Build Your Reputation",
+  },
+  {
+    slug: "events-management",
+    name: "Events Management",
+    short: "Events",
+    subtitle: "Launches, Conferences & Brand Activations",
+    summary:
+      "Planning and running product launches, conferences, exhibitions, corporate events, and brand activations end to end.",
+    headline: "Events planned down to the detail.",
+    body: "tech-oriented plans and runs events that represent the brand well and leave a lasting impression. We handle concept, planning, venue and vendor management, production, on-site operations, and promotion before and after the event.",
+    capabilities: [
+      "Product launches",
+      "Conferences and seminars",
+      "Exhibitions and booths",
+      "Corporate events",
+      "Brand activations",
+      "Venue and vendor management",
+      "Event production and staging",
+      "Event promotion and coverage",
+    ],
+    bestFor: [
+      "Companies launching new products",
+      "Brands taking part in exhibitions",
+      "Organizations hosting conferences",
+      "Businesses running internal or client events",
+    ],
+    cta: "Plan Your Event",
+  },
+];
+
+export type ServiceGroup = { key: string; name: string; tagline: string; slugs: string[] };
+
+export const serviceGroups: ServiceGroup[] = [
+  {
+    key: "software",
+    name: "Software Development",
+    tagline: "Build the system the business runs on.",
+    slugs: [
+      "ai-solutions",
+      "automation-solutions",
+      "crm-business-systems",
+      "custom-software-development",
+      "web-mobile-applications",
+      "business-dashboards",
+    ],
+  },
+  {
+    key: "marketing",
+    name: "Marketing Services",
+    tagline: "Build the demand the system serves.",
+    slugs: [
+      "strategic-marketing",
+      "performance-marketing",
+      "branding",
+      "visual-content",
+      "digital-marketing",
+      "media-production",
+      "public-relations",
+      "events-management",
+    ],
+  },
 ];
 
 export const servicesIntro = {
-  label: "Our Services",
+  // label: "Our Services",
   title: "Technology services designed around your business needs.",
   body: "tech-oriented provides connected technology services that help companies automate operations, improve customer communication, build digital platforms, and gain better visibility over business performance.",
 };
@@ -535,8 +750,8 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    slug: "qatari-educational-platform",
-    name: "Qatari Educational Platform",
+    slug: "akoun",
+    name: "Akoun",
     sector: "E-Learning & EdTech",
     stack: ["Laravel", "DRM Video Protection", "WebRTC / Zoom API"],
     challenge:
@@ -581,8 +796,8 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    slug: "qatari-automotive-parts-platform",
-    name: "Qatari Automotive Parts Platform",
+    slug: "motori",
+    name: "Motori",
     sector: "Automotive E-commerce",
     stack: ["Native App Structure", "Laravel", "MySQL"],
     challenge:
@@ -602,6 +817,29 @@ export const caseStudies: CaseStudy[] = [
       "More organized vendor management",
       "Streamlined onboarding for new vendors",
       "Better handling of complex e-commerce logic",
+    ],
+  },
+  {
+    slug: "baytlink",
+    name: "BaytLink",
+    sector: "PropTech / Real Estate",
+    stack: [],
+    challenge:
+      "Property managers and owners' associations were running payments, maintenance requests, votes, documents, and announcements through paper, phone calls, and scattered WhatsApp groups, with no single place to follow up on anything.",
+    solution:
+      "tech-oriented built BaytLink, a unified digital platform for property management and owners' associations that brings payments and finances, complaints and maintenance, voting, documents, announcements, and communication into one place.",
+    delivered: [
+      "Payments and financial management",
+      "Complaints and maintenance requests",
+      "Owners' voting",
+      "Document management",
+      "Announcements and resident communication",
+    ],
+    impact: [
+      "One platform instead of paper, calls, and WhatsApp groups",
+      "Clearer financial visibility for owners and managers",
+      "Trackable complaints and maintenance requests",
+      "More transparent decisions through digital voting",
     ],
   },
 ];
@@ -641,46 +879,46 @@ export const industries = {
   ],
 };
 
-export const technology = {
-  label: "Technology",
-  title: "The right technology for the right business need.",
-  body: "tech-oriented follows a project-first technology approach. We do not force every client into one fixed technical stack. Instead, we select the architecture, backend, frontend, database, integration, and deployment approach based on business logic, scalability needs, data structure, performance requirements, and timeline.",
-  stack: [
-    { group: "Backend", items: ["Laravel (PHP)", "Livewire", "Node.js", "Express"] },
-    { group: "Frontend", items: ["Next.js", "React", "Tailwind CSS"] },
-    { group: "Admin Panels", items: ["Filament", "Laravel Sanctum", "Laravel Reverb"] },
-    { group: "Mobile", items: ["Flutter", "React Native"] },
-    { group: "Databases", items: ["MySQL", "MongoDB", "Redis", "ChromaDB"] },
-    { group: "AI & APIs", items: ["Python", "RAG", "OpenAI APIs", "WhatsApp Business API", "Meta Graph API", "Custom APIs"] },
-    { group: "Infrastructure", items: ["Docker", "Nginx", "VPS", "Cloud Hosting", "DevOps", "QA"] },
-  ],
-  matrix: [
-    { need: "Rapid MVP or CRUD-heavy platform", direction: "Laravel + Livewire + MySQL" },
-    { need: "High-performance interactive platform", direction: "Next.js + Node.js/Express + MongoDB" },
-    { need: "Complex scalable system", direction: "Node.js/Express + MongoDB + Redis" },
-    { need: "Real-time or lightweight service", direction: "Node.js + Laravel Reverb + Redis" },
-    { need: "Mobile-first product", direction: "Flutter or React Native" },
-    { need: "AI-powered communication", direction: "Python + RAG + OpenAI APIs + CRM integration" },
-    { need: "Secure business portal", direction: "Laravel + Filament + Laravel Sanctum + role-based access" },
-  ],
-  capabilities: [
-    "API integrations",
-    "Payment gateway integration",
-    "WhatsApp Business API integration",
-    "Docker-based deployment",
-    "VPS / Cloud hosting",
-    "QA process",
-    "Documentation",
-    "Training",
-    "Maintenance and support",
-    "SLA-based support where agreed",
-    "Security practices",
-    "Roles and permissions",
-    "Backup and scalability planning",
-    "DevOps and deployment process",
-    "Agile / sprint-based delivery",
-  ],
-};
+// export const technology = {
+//   label: "Technology",
+//   title: "The right technology for the right business need.",
+//   body: "tech-oriented follows a project-first technology approach. We do not force every client into one fixed technical stack. Instead, we select the architecture, backend, frontend, database, integration, and deployment approach based on business logic, scalability needs, data structure, performance requirements, and timeline.",
+//   stack: [
+//     { group: "Backend", items: ["Laravel (PHP)", "Livewire", "Node.js", "Express"] },
+//     { group: "Frontend", items: ["Next.js", "React", "Tailwind CSS"] },
+//     { group: "Admin Panels", items: ["Filament", "Laravel Sanctum", "Laravel Reverb"] },
+//     { group: "Mobile", items: ["Flutter", "React Native"] },
+//     { group: "Databases", items: ["MySQL", "MongoDB", "Redis", "ChromaDB"] },
+//     { group: "AI & APIs", items: ["Python", "RAG", "OpenAI APIs", "WhatsApp Business API", "Meta Graph API", "Custom APIs"] },
+//     { group: "Infrastructure", items: ["Docker", "Nginx", "VPS", "Cloud Hosting", "DevOps", "QA"] },
+//   ],
+//   matrix: [
+//     { need: "Rapid MVP or CRUD-heavy platform", direction: "Laravel + Livewire + MySQL" },
+//     { need: "High-performance interactive platform", direction: "Next.js + Node.js/Express + MongoDB" },
+//     { need: "Complex scalable system", direction: "Node.js/Express + MongoDB + Redis" },
+//     { need: "Real-time or lightweight service", direction: "Node.js + Laravel Reverb + Redis" },
+//     { need: "Mobile-first product", direction: "Flutter or React Native" },
+//     { need: "AI-powered communication", direction: "Python + RAG + OpenAI APIs + CRM integration" },
+//     { need: "Secure business portal", direction: "Laravel + Filament + Laravel Sanctum + role-based access" },
+//   ],
+//   capabilities: [
+//     "API integrations",
+//     "Payment gateway integration",
+//     "WhatsApp Business API integration",
+//     "Docker-based deployment",
+//     "VPS / Cloud hosting",
+//     "QA process",
+//     "Documentation",
+//     "Training",
+//     "Maintenance and support",
+//     "SLA-based support where agreed",
+//     "Security practices",
+//     "Roles and permissions",
+//     "Backup and scalability planning",
+//     "DevOps and deployment process",
+//     "Agile / sprint-based delivery",
+//   ],
+// };
 
 export const about = {
   label: "About Us",
@@ -737,8 +975,8 @@ export const contact = {
   ],
 };
 
-// Brand teal family (main colour #2DD4BF) for generative fallbacks and fills
+// Brand teal (logo colour #66C1C0) for generative fallbacks and fills
 export const tones = [
-  "#2DD4BF", "#14B8A6", "#5EEAD4", "#0F766E", "#99F6E4", "#0D9488",
-  "#115E59", "#2DD4BF", "#134E4A", "#5EEAD4", "#14B8A6", "#0F766E",
+  "#66C1C0", "#66C1C0", "#66C1C0", "#66C1C0", "#66C1C0", "#66C1C0",
+  "#66C1C0", "#66C1C0", "#66C1C0", "#66C1C0", "#66C1C0", "#66C1C0",
 ];

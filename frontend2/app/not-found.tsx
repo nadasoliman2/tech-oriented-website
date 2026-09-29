@@ -12,7 +12,6 @@ export default async function NotFound() {
 
   return (
     <section className="page-hero site-max">
-      <p className="label label--dot mb-3">404</p>
       <h1 className="c1">{t.title}</h1>
       <div className="mt-4">
         <Button href="/">{t.back}</Button>

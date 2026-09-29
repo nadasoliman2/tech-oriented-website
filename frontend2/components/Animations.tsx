@@ -164,11 +164,11 @@ export default function Animations() {
           const split = SplitText.create(el, { type: "words", wordsClass: "w" });
           splits.push(split);
           if (reduced) return void gsap.set(split.words, { opacity: 1 });
-          gsap.to(split.words, {
+          gsap.fromTo(split.words, { opacity: 0.15 }, {
             opacity: 1,
             stagger: 0.1,
             ease: "none",
-            scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 45%", scrub: true },
+            scrollTrigger: { trigger: el, start: "top 85%", end: "bottom 50%", scrub: true },
           });
         });
 
@@ -198,17 +198,25 @@ export default function Animations() {
         // Stacked cards
         const cards = gsap.utils.toArray<HTMLElement>(".stack__card");
         cards.forEach((card, i) => {
+          if (reduced) return;
           const next = cards[i + 1];
-          if (!next || reduced) return;
-          gsap.to(card, {
-            scale: 0.9,
-            ease: "none",
-            scrollTrigger: { trigger: next, start: "top bottom", end: "top top+=80", scrub: true },
-          });
+          if (next) {
+            gsap.to(card, {
+              scale: 0.96,
+              ease: "none",
+              scrollTrigger: { trigger: next, start: "top bottom", end: "top top+=80", scrub: true },
+            });
+          } else {
+            gsap.to(card, {
+              scale: 0.96,
+              ease: "none",
+              scrollTrigger: { trigger: card, start: "bottom bottom", end: "bottom top+=80", scrub: true },
+            });
+          }
         });
 
         // Scramble labels
-        gsap.utils.toArray<HTMLElement>("[data-scramble], .label--dot").forEach((el) => {
+        gsap.utils.toArray<HTMLElement>("[data-scramble]").forEach((el) => {
           if (reduced) return;
           ScrollTrigger.create({
             trigger: el,

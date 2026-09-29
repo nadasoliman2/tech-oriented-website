@@ -29,7 +29,6 @@ export default function Accordion({ items, initial = 0 }: { items: AccItem[]; in
       {items.map((item, i) => (
         <div className={`acc__item${open === i ? " is-open" : ""}`} key={item.title}>
           <button className="acc__head" onClick={() => toggle(i)} aria-expanded={open === i}>
-            <span className="label">{String(i + 1).padStart(2, "0")}</span>
             <span className="acc__title h4">{item.title}</span>
             {item.sub && <span className="acc__sub label">{item.sub}</span>}
             <span className="acc__icon" aria-hidden="true" />

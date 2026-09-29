@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Cairo, Inter, Source_Code_Pro } from "next/font/google";
 import Animations from "@/components/Animations";
 import Cursor from "@/components/Cursor";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Menu from "@/components/Menu";
@@ -18,7 +19,7 @@ const ar = Cairo({ subsets: ["arabic"], weight: ["400", "500", "600", "700"], va
 export const metadata: Metadata = {
   metadataBase: new URL("https://tech-oriented.digital"),
   title: {
-    default: "tech-oriented | AI & Digital Transformation Tech House",
+    default: "tech-oriented | igital Transformation Tech House",
     template: "%s | tech-oriented",
   },
   description:
@@ -47,6 +48,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Menu />
           <main>{children}</main>
           <Footer lang={lang} />
+          <FloatingWhatsApp />
           <Animations />
           <Cursor />
         </Providers>
