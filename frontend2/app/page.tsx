@@ -1,4 +1,3 @@
-import Accordion from "@/components/Accordion";
 import Button from "@/components/Button";
 import HeroCanvas from "@/components/HeroCanvas";
 import Marquee from "@/components/Marquee";
@@ -24,7 +23,6 @@ const strings = {
     allCaseStudies: "All case studies",
     view: "View",
     learnMore: "Learn more",
-    capabilities: "Capabilities",
     customerLabel: "Customer",
     exploreEverySecondAi: "Explore Every Second AI",
     chatQuestion: "Do you have appointments available tomorrow?",
@@ -51,7 +49,6 @@ const strings = {
     allCaseStudies: "كل قصص النجاح",
     view: "عرض",
     learnMore: "اعرف أكثر",
-    capabilities: "القدرات",
     customerLabel: "العميل",
     exploreEverySecondAi: "استكشف Every Second AI",
     chatQuestion: "هل لديكم مواعيد متاحة غدًا؟",
@@ -69,8 +66,6 @@ const strings = {
 export default async function HomePage() {
   const lang = await getLang();
   const { about, caseStudies, home, products, serviceGroups, services } = getData(lang);
-  // marketing first, then software — in the order each group lists them
-  const serviceOrder = [...serviceGroups].sort((a, b) => (a.key === "marketing" ? -1 : b.key === "marketing" ? 1 : 0));
   const t = strings[lang];
   const featured = products[0];
   const others = products.slice(1);
@@ -122,7 +117,7 @@ export default async function HomePage() {
       {/* ---------------- Showreel (grows to full-bleed) ---------------- */}
       <section className="reel" data-reel>
         <div className="reel__frame">
-          <video src={`/media/v/${showreelMedia.id}.mp4`} poster={`/media/p/${showreelMedia.id}.jpg`} autoPlay muted loop playsInline preload="none" />
+          <video src={`/media/v/${showreelMedia.id}.mp4#t=0.001`} autoPlay muted loop playsInline preload="metadata" />
         </div>
         <div className="reel__text">
           <h2 className="h2 reel__title">
@@ -211,43 +206,31 @@ export default async function HomePage() {
         <h2 className="h3 max-120 mb-4" data-split="lines">
           {home.paradigms.title}
         </h2>
-        {serviceOrder.map((g, gi) => (
-          <div className="svc-block" key={g.key}>
-            <div className="svc-block__head">
-              <h3 className="h4">{g.name}</h3>
-              <p className="body-l muted">{g.tagline}</p>
+        <div className="svc-simple">
+          {serviceGroups.map((g) => (
+            <div key={g.key}>
+              <div className="svc-block__head">
+                <h3 className="h4">{g.name}</h3>
+                <p className="body-l muted">{g.tagline}</p>
+              </div>
+              <ul className="svc-list" data-stagger>
+                {g.slugs
+                  .map((slug) => services.find((s) => s.slug === slug)!)
+                  .map((s) => (
+                    <li key={s.slug}>
+                      <TLink href={`/services/${s.slug}`} className="svc-list__row" data-cursor={t.view}>
+                        <span className="svc-list__text">
+                          <span className="svc-list__name">{s.name}</span>
+                          <span className="svc-list__sub">{s.subtitle}</span>
+                        </span>
+                        <span className="svc-list__arrow" aria-hidden="true">→</span>
+                      </TLink>
+                    </li>
+                  ))}
+              </ul>
             </div>
-            <Accordion
-              initial={gi === 0 ? 0 : -1}
-              items={g.slugs
-                .map((slug) => services.find((s) => s.slug === slug)!)
-                .map((s) => ({
-            title: s.name,
-            sub: s.subtitle,
-            content: (
-              <>
-                <div className="col gap-3">
-                  <p className="body-l muted">{s.summary}</p>
-                  <div>
-                    <Button href={`/services/${s.slug}`} size="sm">
-                      {t.learnMore}
-                    </Button>
-                  </div>
-                </div>
-                <div className="col gap-2">
-                  <span className="label">{t.capabilities}</span>
-                  <div className="acc__tags">
-                    {s.capabilities.slice(0, 6).map((c) => (
-                      <span className="tag" key={c}>{c}</span>
-                    ))}
-                  </div>
-                </div>
-              </>
-            ),
-          }))}
-            />
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       {/* ---------------- Featured product ---------------- */}
