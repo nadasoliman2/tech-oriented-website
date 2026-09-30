@@ -44,11 +44,29 @@ const SERVICES_OPTIONS: { value: InitiativeScope; label: { en: string; ar: strin
   { value: "Product Partnership", label: { en: "Product Partnership", ar: "شراكة منتج" } },
 ];
 
-export default function ContactForm() {
+/** Site service slug (/services/[slug]) -> closest form option, so "/contact?service=<slug>" arrives preselected */
+const SERVICE_SCOPE: Record<string, InitiativeScope> = {
+  "ai-solutions": "AI & Automation",
+  "automation-solutions": "AI & Automation",
+  "crm-business-systems": "Custom CRM / ERP",
+  "custom-software-development": "Custom CRM / ERP",
+  "web-mobile-applications": "Web & Mobile Apps",
+  "business-dashboards": "Executive Dashboards",
+  "strategic-marketing": "Marketing",
+  "performance-marketing": "Marketing",
+  branding: "Marketing",
+  "visual-content": "Marketing",
+  "digital-marketing": "Marketing",
+  "media-production": "Marketing",
+  "public-relations": "Marketing",
+  "events-management": "Marketing",
+};
+
+export default function ContactForm({ service }: { service?: string }) {
   const { lang } = useSite();
   const t = strings[lang];
 
-  const [selectedService, setSelectedService] = useState<string>("");
+  const [selectedService, setSelectedService] = useState<string>((service && SERVICE_SCOPE[service]) || "");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{ type: "success" | "error"; text: string } | null>(null);
 

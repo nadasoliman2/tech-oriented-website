@@ -1,38 +1,23 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import type { MediaRef } from "@/lib/media";
+import { useAutoVideo } from "./useAutoVideo";
 
 type Props = {
   media: MediaRef;
   className?: string;
   parallax?: number;
-  /** play video (if the ref has one); stills otherwise */
-  play?: boolean;
   eager?: boolean;
+  /** video playback speed (stock clips are often slow-motion) */
+  speed?: number;
 };
 
-/** Photo/video tile (Fantasy radius-media). Video refs render the video alone (no poster) and play only while on screen. */
-export default function Media({ media, className = "", parallax = 0.12, play = true, eager = false }: Props) {
+/** Photo/video tile (Fantasy radius-media). Video refs render the video alone (no poster) and play whenever on screen. */
+export default function Media({ media, className = "", parallax = 0.12, eager = false, speed }: Props) {
   const video = useRef<HTMLVideoElement>(null);
-  const hasVideo = play && media.video;
-
-  useEffect(() => {
-    const el = video.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.play().catch(() => {});
-        } else {
-          el.pause();
-        }
-      },
-      { rootMargin: "200px 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const hasVideo = media.video;
+  useAutoVideo(video, `/media/v/${media.id}.mp4`, speed ?? media.rate ?? 1);
 
   const still = `/media/p/${media.id}.jpg`;
 
@@ -44,11 +29,12 @@ export default function Media({ media, className = "", parallax = 0.12, play = t
           <video
             ref={video}
             className="media__video"
-            src={`/media/v/${media.id}.mp4#t=0.001`}
+            src={`/media/v/${media.id}.mp4`}
+            autoPlay
+            preload="auto"
             muted
             loop
             playsInline
-            preload={eager ? "auto" : "metadata"}
             aria-label={media.alt}
           />
         ) : (

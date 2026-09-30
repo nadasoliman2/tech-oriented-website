@@ -78,8 +78,12 @@ export default function Animations() {
               const targets = type === "chars" ? self.chars : type === "words" ? self.words : self.lines;
               return gsap.from(targets, {
                 yPercent: 140,
-                duration: type === "chars" ? 1.4 : 1.3,
-                stagger: type === "chars" ? 0.025 : type === "words" ? 0.03 : 0.09,
+                // text flips up out of its mask in 3D instead of only sliding
+                rotationX: -80,
+                transformOrigin: "50% 100%",
+                transformPerspective: 700,
+                duration: type === "chars" ? 1 : 0.9,
+                stagger: type === "chars" ? 0.018 : type === "words" ? 0.025 : 0.06,
                 delay,
                 ease: "expo.out",
                 scrollTrigger: { trigger: el, start: "top 90%", once: true },
@@ -94,12 +98,13 @@ export default function Animations() {
           if (reduced) return void gsap.set(el, { opacity: 1 });
           gsap.fromTo(
             el,
-            { opacity: 0, y: 50 },
+            { opacity: 0, y: 30 },
             {
               opacity: 1,
               y: 0,
-              duration: 1.4,
-              delay: parseFloat(el.dataset.delay || "0") + (inView(el) ? 0.25 : 0),
+              duration: 0.7,
+              ease: "power3.out",
+              delay: parseFloat(el.dataset.delay || "0") + (inView(el) ? 0.15 : 0),
               scrollTrigger: { trigger: el, start: "top 92%", once: true },
             },
           );
@@ -109,9 +114,9 @@ export default function Animations() {
           if (reduced) return;
           gsap.from(el.children, {
             opacity: 0,
-            y: 40,
-            duration: 1.2,
-            stagger: 0.08,
+            y: 24,
+            duration: 0.6,
+            stagger: 0.05,
             delay: inView(el) ? 0.3 : 0,
             scrollTrigger: { trigger: el, start: "top 90%", once: true },
           });
@@ -152,7 +157,7 @@ export default function Animations() {
             { clipPath: "inset(12% 8% 12% 8% round 2rem)" },
             {
               clipPath: "inset(0% 0% 0% 0% round 0rem)",
-              duration: 1.8,
+              duration: 1.1,
               ease: "expo.out",
               scrollTrigger: { trigger: el, start: "top 85%", once: true },
             },
@@ -253,6 +258,22 @@ export default function Animations() {
               { clipPath: "inset(0% 0% 0% 0% round 0rem)", ease: "none" },
             )
             .fromTo(title, { yPercent: 40, opacity: 0.2 }, { yPercent: 0, opacity: 1, ease: "none" }, 0);
+        });
+
+        // Manifesto: pinned statement with a teal wash
+        gsap.utils.toArray<HTMLElement>("[data-manifesto]").forEach((scene) => {
+          const text = scene.querySelector<HTMLElement>(".manifesto__text");
+          if (!text || reduced) return;
+          const split = SplitText.create(text, { type: "words", wordsClass: "manifesto__w" });
+          splits.push(split);
+          gsap
+            .timeline({
+              defaults: { ease: "none" },
+              scrollTrigger: { trigger: scene, start: "top top", end: "+=220%", pin: true, scrub: 0.6 },
+            })
+            .fromTo(split.words, { opacity: 0.12 }, { opacity: 1, stagger: 0.06, duration: 0.6 }, 0)
+            .to(scene, { "--m-bg": "#66C1C0", "--m-fg": "#070c0d", duration: 0.7 }, 0.3)
+            .to(scene, { "--m-bg": "#070c0d", "--m-fg": "#ffffff", duration: 0.7 }, 1.9);
         });
 
         // Timeline rail

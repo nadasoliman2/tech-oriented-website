@@ -106,7 +106,7 @@ export default async function ServicePage({ params }: Params) {
               ))}
             </ul>
             <div className="mt-4 flex wrap gap-2 items-center" data-fade>
-              <Button href="/contact" variant="dark">
+              <Button href={`/contact?service=${s.slug}`} variant="dark">
                 {s.cta}
               </Button>
               <span className="muted">{t.contactCta}</span>

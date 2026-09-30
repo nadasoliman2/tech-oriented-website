@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Media from "@/components/Media";
-import Button from "@/components/Button";
+import Button, { Arrow } from "@/components/Button";
 import PageHero from "@/components/PageHero";
+import ProductLogo from "@/components/ProductLogo";
 import TLink from "@/components/TLink";
 import { products } from "@/lib/data";
 import { getLang } from "@/lib/i18n";
 import { getData } from "@/lib/i18n-data";
-import { productMedia } from "@/lib/media";
+import { brands, brandStyle } from "@/lib/brands";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -30,6 +30,7 @@ const strings = {
     category: "Category",
     getInTouch: "Get In Touch",
     nextProduct: "Next product",
+    visit: "Visit website",
     arrow: "→",
   },
   ar: {
@@ -40,6 +41,7 @@ const strings = {
     category: "التصنيف",
     getInTouch: "تواصل معنا",
     nextProduct: "المنتج التالي",
+    visit: "زيارة الموقع",
     arrow: "←",
   },
 };
@@ -53,9 +55,12 @@ export default async function ProductPage({ params }: Params) {
   if (index < 0) notFound();
   const p = products[index];
   const next = products[(index + 1) % products.length];
+  const brand = brands[p.slug];
+  const url = brand?.url;
+  const style = brandStyle(p.slug);
 
   return (
-    <>
+    <div className={style ? "brand-scope" : undefined} style={style}>
       <PageHero
         label={`${t.products} / ${p.category}`}
         title={p.name}
@@ -66,15 +71,19 @@ export default async function ProductPage({ params }: Params) {
             {p.headline} {p.body}
           </>
         }
-        meta={<span className="tag tag--solid">{p.status}</span>}
+        meta={
+          <div className="flex wrap gap-1 items-center">
+            <span className="tag tag--solid">{p.status}</span>
+            {url && (
+              <TLink href={url} className="visit-link">
+                {t.visit} <Arrow className="" />
+              </TLink>
+            )}
+          </div>
+        }
         ambient
+        logo={<ProductLogo slug={p.slug} name={p.name} />}
       />
-
-      <section className="site-max">
-        <div data-reveal>
-          <Media media={productMedia[p.slug]} className="banner" parallax={0.18} eager />
-        </div>
-      </section>
 
       <section className="section site-max">
         <div className="detail-grid">
@@ -108,9 +117,15 @@ export default async function ProductPage({ params }: Params) {
               <Button href="/contact" variant="dark">
                 {p.cta}
               </Button>
-              <Button href="/contact" variant="outline">
-                {t.getInTouch}
-              </Button>
+              {url ? (
+                <Button href={url} variant="outline">
+                  {t.visit}
+                </Button>
+              ) : (
+                <Button href="/contact" variant="outline">
+                  {t.getInTouch}
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -122,6 +137,6 @@ export default async function ProductPage({ params }: Params) {
           <span className="c1">{next.name} {t.arrow}</span>
         </TLink>
       </section>
-    </>
+    </div>
   );
 }

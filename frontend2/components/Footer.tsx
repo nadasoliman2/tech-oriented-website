@@ -86,14 +86,14 @@ export default function Footer({ lang }: { lang: Lang }) {
               className="logo-on-dark"
               src="/logo-full.png"
               alt="tech-oriented — tech solutions for every day problems"
-              style={{ width: "min(32rem, 80%)", height: "auto" }}
+              style={{ width: "min(36rem, 85%)", height: "auto" }}
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="logo-on-light"
               src="/logo-full-dark.png"
               alt="tech-oriented — tech solutions for every day problems"
-              style={{ width: "min(32rem, 80%)", height: "auto" }}
+              style={{ width: "min(36rem, 85%)", height: "auto" }}
             />
             <p className="muted max-60" style={{ fontSize: "1.4rem" }}>
               {company.summary}

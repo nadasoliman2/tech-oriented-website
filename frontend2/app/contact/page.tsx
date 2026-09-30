@@ -10,7 +10,8 @@ const strings = {
   ar: { title: "أرسل لنا رسالة" },
 };
 
-export default async function ContactPage() {
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
+  const { service } = await searchParams;
   const lang = await getLang();
   const t = strings[lang];
 
@@ -22,7 +23,7 @@ export default async function ContactPage() {
           {t.title}
         </h1>
         <div className="contact__card" data-fade data-delay="0.15">
-          <ContactForm />
+          <ContactForm service={typeof service === "string" ? service : undefined} />
         </div>
       </div>
     </section>

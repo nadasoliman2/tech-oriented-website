@@ -635,7 +635,7 @@ export const products: Product[] = [
   {
     slug: "bayt-link",
     name: "Bayt Link",
-    status: "Coming Soon",
+    status: "Live",
     category: "PropTech / Building Management",
     headline: "A property community management solution.",
     body: "It helps communities organize communication, shared expenses, voting, and service requests in a more structured way.",
@@ -691,7 +691,7 @@ export const products: Product[] = [
   {
     slug: "ready-car",
     name: "Ready Car",
-    status: "Upcoming",
+    status: "Live",
     category: "Marketplace Platforms",
     headline: "A marketplace for car spare parts and automotive accessories.",
     body: "The platform is designed to improve how customers discover, compare, and purchase automotive products online while helping vendors reach a wider customer base.",

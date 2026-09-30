@@ -3,9 +3,14 @@ import HeroCanvas from "@/components/HeroCanvas";
 import Marquee from "@/components/Marquee";
 import Media from "@/components/Media";
 import Odometer from "@/components/Odometer";
+import Manifesto from "@/components/Manifesto";
+import Mark3D from "@/components/Mark3D";
+import ProductLogo from "@/components/ProductLogo";
+import ReelVideo from "@/components/ReelVideo";
 import TLink from "@/components/TLink";
 import { getLang } from "@/lib/i18n";
 import { getData } from "@/lib/i18n-data";
+import { brandStyle } from "@/lib/brands";
 import { aboutMedia, caseLogos, caseMedia, featuredMedia, heroMedia, problemMedia, productMedia, showreelMedia } from "@/lib/media";
 
 const strings = {
@@ -79,6 +84,7 @@ export default async function HomePage() {
         </div>
         <HeroCanvas />
         <div className="hero__vignette" />
+        <Mark3D className="hero__mark" interactive />
         {/* <div className="hero__scroll label">
           <span>{t.scroll}</span>
           <i />
@@ -117,7 +123,7 @@ export default async function HomePage() {
       {/* ---------------- Showreel (grows to full-bleed) ---------------- */}
       <section className="reel" data-reel>
         <div className="reel__frame">
-          <video src={`/media/v/${showreelMedia.id}.mp4#t=0.001`} autoPlay muted loop playsInline preload="metadata" />
+          <ReelVideo id={showreelMedia.id} />
         </div>
         <div className="reel__text">
           <h2 className="h2 reel__title">
@@ -125,6 +131,39 @@ export default async function HomePage() {
           </h2>
         </div>
       </section>
+
+<section className="section site-max">
+        <h2 className="h3 max-120 mb-4" data-split="lines">
+          {home.paradigms.title}
+        </h2>
+        <div className="svc-simple">
+          {serviceGroups.map((g) => (
+            <div key={g.key}>
+              <div className="svc-block__head">
+                <h3 className="h4">{g.name}</h3>
+                <p className="body-l muted">{g.tagline}</p>
+              </div>
+              <ul className="svc-list" data-stagger>
+                {g.slugs
+                  .map((slug) => services.find((s) => s.slug === slug)!)
+                  .map((s) => (
+                    <li key={s.slug}>
+                      <TLink href={`/services/${s.slug}`} className="svc-list__row" data-cursor={t.view}>
+                        <span className="svc-list__text">
+                          <span className="svc-list__name">{s.name}</span>
+                          <span className="svc-list__sub">{s.subtitle}</span>
+                        </span>
+                        <span className="svc-list__arrow" aria-hidden="true">→</span>
+                      </TLink>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+      {/* ---------------- Manifesto (pinned statement + 3D mark) ---------------- */}
+      {/* <Manifesto text={home.body} /> */}
 
       {/* ---------------- Intro statement ---------------- */}
       {/* <section className="section site-max">
@@ -177,10 +216,16 @@ export default async function HomePage() {
         </div>
         <div className="stack">
           {caseStudies.map((c, i) => (
-            <TLink href="/our-work" className="stack__card" key={c.slug} data-cursor={t.view}>
+            <TLink
+              href={`/our-work#${c.slug}`}
+              className={`stack__card${brandStyle(c.slug) ? " brand-scope" : ""}`}
+              style={brandStyle(c.slug)}
+              key={c.slug}
+              data-cursor={t.view}
+            >
               <div className="stack__info">
                 {caseLogos[c.slug] ? (
-                  <div className={`stack__logo${caseLogos[c.slug].tall ? " stack__logo--tall" : ""}`}>
+                  <div className={`stack__logo${caseLogos[c.slug].tall ? " stack__logo--tall" : ""}${caseLogos[c.slug].big ? " stack__logo--big" : ""}`}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img className="logo-on-dark" src={caseLogos[c.slug].src.replace(".png", "-dark.png")} alt="" aria-hidden="true" loading="lazy" />
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -202,36 +247,7 @@ export default async function HomePage() {
       </section>
 
       {/* ---------------- Services ---------------- */}
-      <section className="section site-max">
-        <h2 className="h3 max-120 mb-4" data-split="lines">
-          {home.paradigms.title}
-        </h2>
-        <div className="svc-simple">
-          {serviceGroups.map((g) => (
-            <div key={g.key}>
-              <div className="svc-block__head">
-                <h3 className="h4">{g.name}</h3>
-                <p className="body-l muted">{g.tagline}</p>
-              </div>
-              <ul className="svc-list" data-stagger>
-                {g.slugs
-                  .map((slug) => services.find((s) => s.slug === slug)!)
-                  .map((s) => (
-                    <li key={s.slug}>
-                      <TLink href={`/services/${s.slug}`} className="svc-list__row" data-cursor={t.view}>
-                        <span className="svc-list__text">
-                          <span className="svc-list__name">{s.name}</span>
-                          <span className="svc-list__sub">{s.subtitle}</span>
-                        </span>
-                        <span className="svc-list__arrow" aria-hidden="true">→</span>
-                      </TLink>
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
+      
 
       {/* ---------------- Featured product ---------------- */}
       {/* <section className="section section--tight site-max">
@@ -284,13 +300,15 @@ export default async function HomePage() {
         </div>
         <div className="products-grid">
           {others.slice(0, 6).map((p) => (
-            <TLink href={`/products/${p.slug}`} className="pcard" key={p.slug} data-cursor={t.view} data-fade>
+            <TLink href={`/products/${p.slug}`} className="pcard" key={p.slug} data-fade>
               <div className="relative">
                 <span className="tag tag--solid pcard__status">{p.status}</span>
-                <Media media={productMedia[p.slug]} className="media--ratio" parallax={0} play={false} />
+                <Media media={productMedia[p.slug]} className="media--ratio" parallax={0} />
               </div>
               <div className="pcard__meta">
-                <h3 className="c3">{p.name}</h3>
+                <h3 className="pcard__title">
+                  <ProductLogo slug={p.slug} name={p.name} />
+                </h3>
                 <span className="label">{p.category}</span>
               </div>
               <p className="muted" style={{ fontSize: "1.6rem" }}>{p.headline}</p>

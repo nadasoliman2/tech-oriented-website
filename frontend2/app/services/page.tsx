@@ -75,7 +75,7 @@ export default async function ServicesPage() {
                     ))}
                   </ul>
                   <div data-fade>
-                    <Button href={`/contact`} variant="outline">
+                    <Button href={`/contact?service=${s.slug}`} variant="outline">
                       {t.learnMore}
                     </Button>
                   </div>

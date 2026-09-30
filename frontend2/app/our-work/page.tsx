@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Media from "@/components/Media";
 import Button from "@/components/Button";
 import PageHero from "@/components/PageHero";
+import TLink from "@/components/TLink";
+import { Arrow } from "@/components/Button";
 import { getLang } from "@/lib/i18n";
 import { getData } from "@/lib/i18n-data";
+import { brands, brandStyle } from "@/lib/brands";
 import { caseMedia } from "@/lib/media";
 
 export const metadata: Metadata = { title: "Case Studies" };
@@ -16,6 +19,7 @@ const strings = {
     impact: "Business Impact",
     nextTitle: "Ready to be the next success story?",
     cta: "Request a Consultation",
+    visit: "Visit website",
   },
   ar: {
     challenge: "التحدي",
@@ -24,6 +28,7 @@ const strings = {
     impact: "الأثر على العمل",
     nextTitle: "جاهز لتكون قصة النجاح القادمة؟",
     cta: "اطلب استشارة",
+    visit: "زيارة الموقع",
   },
 };
 
@@ -34,15 +39,25 @@ export default async function CaseStudiesPage() {
 
   return (
     <>
-      <PageHero label={caseStudiesIntro.label} title={caseStudiesIntro.title} body={caseStudiesIntro.body} ambient />
+      <PageHero label={caseStudiesIntro.label} title={caseStudiesIntro.title} body={caseStudiesIntro.body} ambient model="knot" />
 
       <section className="site-max">
         {caseStudies.map((c, i) => (
-          <article className="case" key={c.slug} id={c.slug}>
+          <article
+            className={`case${brandStyle(c.slug) ? " brand-scope" : ""}`}
+            style={brandStyle(c.slug)}
+            key={c.slug}
+            id={c.slug}
+          >
             <div className="case__head">
               <div>
-                <div className="flex gap-2 mb-3">
+                <div className="flex wrap items-center gap-2 mb-3">
                   <span className="label">{c.sector}</span>
+                  {brands[c.slug]?.url && (
+                    <TLink href={brands[c.slug].url!} className="visit-link">
+                      {t.visit} <Arrow className="" />
+                    </TLink>
+                  )}
                 </div>
                 <h2 className="h3" data-split="lines">
                   {c.name}
@@ -56,7 +71,7 @@ export default async function CaseStudiesPage() {
             </div>
 
             <div className="mb-6" data-reveal>
-              <Media media={caseMedia[c.slug]} className="banner" parallax={0.16} />
+              <Media media={caseMedia[c.slug]} className="banner case__video" parallax={0.16} />
             </div>
 
             <div className="case__cols">

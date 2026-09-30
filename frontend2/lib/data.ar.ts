@@ -24,7 +24,6 @@ export const nav = [
   { label: "منتجاتنا", href: "/products" },
   { label: "قصص نجاح", href: "/our-work" },
 
-  { label: "القطاعات", href: "/industries" },
     { label: "من نحن", href: "/about" },
     { label: "اتصل بنا", href: "/contact" }
 
