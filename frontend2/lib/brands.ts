@@ -19,7 +19,7 @@ export type Brand = {
 };
 
 const baytLink: Brand = {
-  url: "https://apps.apple.com/eg/app/bayt-link-%D8%A8%D9%8A%D8%AA-%D9%84%D9%8A%D9%86%D9%83/id6780191889",
+  url: "https://baytlink.app/en",
   color: "#4a9d4f", ink: "#ffffff", color2: "#86c98a",
 };
 

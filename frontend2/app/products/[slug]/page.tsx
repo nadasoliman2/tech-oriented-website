@@ -104,7 +104,7 @@ export default async function ProductPage({ params }: Params) {
         </div>
       </section>
 
-      <section className="section section--light">
+      {/* <section className="section section--light">
         <div className="site-max detail-grid">
           <div className="detail-grid__aside">
             <p className="label">{t.category}: {p.category}</p>
@@ -129,7 +129,7 @@ export default async function ProductPage({ params }: Params) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="site-max">
         <TLink href={`/products/${next.slug}`} className="next-link" data-cursor={t.nextProduct}>

@@ -13,7 +13,7 @@ const strings = {
   en: {
     services: "Services",
     open: "Open",
-    learnMore: "Learn more",
+    learnMore: "Get a quote",
     drag: "Drag",
     sectors: "sectors",
     quoteBy: "— tech-oriented, AI & Digital Transformation Tech House",

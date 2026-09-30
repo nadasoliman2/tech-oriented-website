@@ -50,7 +50,7 @@ export default async function ProductsPage() {
               </div> */}
               <span className="label">{p.category}</span>
               <p className="muted" style={{ fontSize: "1.6rem" }}>{p.headline}</p>
-              {brandDomain(p.slug) && <span className="pcard__domain">{brandDomain(p.slug)}</span>}
+              {/* {brandDomain(p.slug) && <span className="pcard__domain">{brandDomain(p.slug)}</span>} */}
             </TLink>
           ))}
         </div>

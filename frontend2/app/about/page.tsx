@@ -30,7 +30,7 @@ export default async function AboutPage() {
 
   return (
     <>
-      <PageHero label={about.label} title={about.title} wide body={about.intro.join(" ")} ambient model="blob" />
+      <PageHero label={about.label} title={about.title} wide body={about.intro.join(" ")} ambient />
 
       <section className="site-max">
         <div data-reveal>

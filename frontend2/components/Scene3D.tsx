@@ -70,7 +70,7 @@ export default function Scene3D({ variant, className = "" }: { variant: SceneVar
         const R = 1.35;
         const coreGeo = new THREE.SphereGeometry(R * 0.985, 96, 96);
         const coreMat = new THREE.MeshPhysicalMaterial({
-          color: 0x0a1d1f, metalness: 0.2, roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.1,
+          color: 0x0a1d1f, metalness: 0.2, roughness: 0.5, clearcoat: 0.6, clearcoatRoughness: 0.35, envMapIntensity: 0.35,
         });
         const core = new THREE.Mesh(coreGeo, coreMat);
 

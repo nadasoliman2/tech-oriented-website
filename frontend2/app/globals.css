@@ -1486,15 +1486,15 @@ html { background: var(--bg); }
 /* Our Work: polished knot, top centre between the title and the edge */
 .scene3d--knot { top: calc(var(--header-h) + 1rem); left: 42%; width: clamp(20rem, 24vw, 38rem); aspect-ratio: 1; }
 /* Industries: big planet bleeding off the right edge */
-.scene3d--globe { top: 50%; right: calc(-1 * clamp(8rem, 10vw, 18rem)); width: clamp(30rem, 44vw, 72rem); aspect-ratio: 1; transform: translateY(-50%); }
+.scene3d--globe { top: calc(var(--header-h) + 0.5rem); right: calc(-1 * clamp(4rem, 5vw, 10rem)); width: clamp(24rem, 28vw, 46rem); aspect-ratio: 1; }
 /* About: pearl form low on the left, under the title */
 .scene3d--blob { bottom: -2rem; left: calc(var(--pad) + 2vw); width: clamp(20rem, 22vw, 34rem); aspect-ratio: 1; }
 [dir="rtl"] .scene3d--knot { left: auto; right: 42%; }
-[dir="rtl"] .scene3d--globe { right: auto; left: calc(-1 * clamp(8rem, 10vw, 18rem)); }
+[dir="rtl"] .scene3d--globe { right: auto; left: calc(-1 * clamp(4rem, 5vw, 10rem)); }
 [dir="rtl"] .scene3d--blob { left: auto; right: calc(var(--pad) + 2vw); }
 @media (max-width: 899px) {
   .scene3d--knot { top: calc(var(--header-h) - 1rem); left: auto; right: -2rem; width: 18rem; opacity: 0.7; }
-  .scene3d--globe { top: 6rem; right: -9rem; width: 26rem; transform: none; opacity: 0.7; }
+  .scene3d--globe { top: 6rem; right: -7rem; width: 22rem; opacity: 0.7; }
   .scene3d--blob { bottom: auto; top: calc(var(--header-h) - 1rem); left: auto; right: -2rem; width: 18rem; opacity: 0.7; }
 }
 

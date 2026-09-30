@@ -39,7 +39,7 @@ export default async function CaseStudiesPage() {
 
   return (
     <>
-      <PageHero label={caseStudiesIntro.label} title={caseStudiesIntro.title} body={caseStudiesIntro.body} ambient model="knot" />
+      <PageHero label={caseStudiesIntro.label} title={caseStudiesIntro.title} body={caseStudiesIntro.body} ambient />
 
       <section className="site-max">
         {caseStudies.map((c, i) => (
